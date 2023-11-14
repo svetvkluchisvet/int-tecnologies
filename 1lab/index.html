@@ -1,0 +1,106 @@
+<div class="tabs-block" id="tabs-block">
+    <div class="tabs" id="tabs">
+        <div class="item active" id="item-1">Профиль</div>
+        <div class="item" id="item-2">Избранное</div>
+        <div class="item" id="item-3">Настройки</div>
+    </div>
+    <div class="tabs-content">
+        <div class="item-content active" id="item-1-content">Профиль</div>
+        <div class="item-content" id="item-2-content">Избранное</div>
+        <div class="item-content" id="item-3-content">Настройки</div>
+    </div>
+</div>
+
+<style>
+    .tabs-block {
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid #dcdfe6;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+    }
+
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        background: #f5f7fa;
+        font-size: 13px;
+        color: #303133;
+        white-space: nowrap;
+        position: relative;
+        transition: transform .3s;
+        float: left;
+        z-index: 2;
+        border-bottom: 1px solid #dcdfe6;
+    }
+
+    .item {
+        padding: 0 20px;
+        height: 40px;
+        box-sizing: border-box;
+        line-height: 40px;
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        color: #9c92a5;
+    }
+
+    .item:hover {
+        cursor: pointer;
+    }
+
+    .item.active {
+        background: #fdfdfe;
+        border-right: 1px solid #dcdfe6;
+        border-left: 1px solid #dcdfe6;
+        padding-bottom: 2px;
+        color: #6a9dfe;
+    }
+
+    .tabs-content {
+        padding: 20px;
+        font-size: 13px;
+        color: #303133;
+        line-height: 1.769230769230769;
+    }
+
+    .item-content {
+        height: 0;
+        transition: .4s;
+        opacity: 0;
+    }
+
+    .item-content.active {
+        height: auto;
+        opacity: 1;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', clickTabs());
+
+    function clickTabs() {
+
+        let tabs = document.querySelector('#tabs');
+        let item = document.querySelectorAll('.item');
+        let itemContent = document.querySelectorAll('.item-content');
+
+        tabs.addEventListener("click", function (event) {
+
+            if (event.target.classList == 'item') {
+                for (let i = 0; i < item.length; i++) {
+                    item[i].classList.remove('active');
+                    itemContent[i].classList.remove('active');
+                }
+
+                event.target.classList.add('active');
+                let idItemContent = event.target.id + '-content';
+                let iC = document.getElementById(idItemContent);
+                iC.classList.add('active');
+            }
+        });
+    }
+
+</script>
